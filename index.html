@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For Mnkuu ❤️</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#ff9bb3,#ffc8d9);
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+.page{
+display:none;
+padding:40px 20px;
+min-height:100vh;
+}
+
+.active{
+display:block;
+}
+
+h1{
+font-size:42px;
+}
+
+.text{
+font-size:26px;
+line-height:1.8;
+max-width:800px;
+margin:auto;
+white-space:pre-line;
+}
+
+button{
+margin-top:40px;
+font-size:30px;
+padding:15px 45px;
+border:none;
+border-radius:50px;
+background:#ff2e7a;
+color:white;
+}
+
+.music{
+position:fixed;
+right:15px;
+top:50%;
+background:#ff2e7a;
+padding:15px;
+border-radius:50%;
+font-size:22px;
+}
+
+.love{
+font-size:80px;
+margin-top:40px;
+background:linear-gradient(90deg,#ff0000,#ff66cc);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.heart{
+position:fixed;
+font-size:22px;
+animation:fall 8s linear infinite;
+}
+
+.petal{
+position:fixed;
+font-size:20px;
+animation:fall 10s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10vh)}
+100%{transform:translateY(110vh)}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="music" onclick="toggleMusic()">🎵</div>
+
+<audio id="song" loop>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="page active">
+<h1>Dear Mnkuu ❤️</h1>
+<div class="text" id="text"></div>
+<button onclick="next()">❤️</button>
+</div>
+
+<div class="page">
+<h1>For You</h1>
+<div class="text" id="text"></div>
+<button onclick="next()">❤️</button>
+</div>
+
+<div class="page">
+<h1>Your Health Routine</h1>
+
+<table style="margin:auto;font-size:24px;">
+<tr><td>Morning</td><td>1 Bhaap + 1 Garara</td></tr>
+<tr><td>Afternoon</td><td>1 Garara</td></tr>
+<tr><td>Evening</td><td>1 Bhaap</td></tr>
+<tr><td>Night</td><td>1 Garara</td></tr>
+</table>
+
+<div class="text" id="text"></div>
+<button onclick="next()">❤️</button>
+</div>
+
+<div class="page">
+<h1>Please Listen</h1>
+<div class="text" id="text"></div>
+<button onclick="next()">❤️</button>
+</div>
+
+<div class="page">
+<h1>One Last Thing</h1>
+<div class="text" id="text"></div>
+<div class="love">I LOVE YOU</div>
+</div>
+
+<script>
+
+let pages=document.querySelectorAll(".page")
+let text=document.getElementById("text")
+let current=0
+
+let messages=[
+
+`यह छोटी-सी website मैंने सिर्फ आपके लिए बनाई है.
+
+कोई fancy project नहीं है
+कोई बड़ा काम भी नहीं है
+
+बस एक छोटी-सी कोशिश है
+उस इंसान के लिए
+जो मेरे लिए बहुत important है.
+
+मुझे पता है कि garara करना
+bhaap लेना
+ये सब routine follow करना boring लगता होगा.
+
+लेकिन जब आपको खाँसी आती है
+या गला दर्द करता है
+तो सच बताऊँ
+मुझे अच्छा नहीं लगता.
+
+कभी-कभी मैं इसलिए नाराज़ भी हो जाता हूँ
+क्योंकि आप अपना ध्यान नहीं रखतीं.
+
+लेकिन उस नाराज़गी के पीछे
+बस एक ही reason होता है
+
+कि मुझे आपकी health की चिंता होती है.`,
+
+`शायद आपको लगता होगा
+कि इतनी-सी खाँसी है
+ठीक हो जाएगी.
+
+लेकिन सच यह है
+कि छोटी-छोटी चीज़ें ignore करते-करते
+problem बड़ी हो जाती है.
+
+अगर आप यह routine follow करेंगी
+तो मुझे सच में बहुत अच्छा लगेगा.`,
+
+`यह routine बहुत simple है.
+
+दिन में मुश्किल से
+10-15 मिनट लगेंगे.
+
+लेकिन इससे
+खाँसी जल्दी ठीक होगी
+गला आराम में रहेगा
+नाक भी साफ रहेगी.`,
+
+`कभी-कभी care करना थोड़ा अजीब लगता है.
+
+जब मैं कहता हूँ
+garara कर लीजिए
+bhaap ले लीजिए
+
+तो वो सिर्फ words नहीं होते.
+
+वो actually यह होता है
+कि मुझे आपकी health की चिंता है.`,
+
+`अगर आप यह routine properly follow करेंगी
+तो एक छोटी-सी deal है.
+
+हर दिन जब आप bhaap लेंगी
+garara करेंगी
+
+तो आपको एक cute reward मिलेगा 😚`
+
+]
+
+function type(msg){
+let i=0
+text.innerHTML=""
+
+function typing(){
+if(i<msg.length){
+text.innerHTML+=msg.charAt(i)
+i++
+setTimeout(typing,20)
+}
+}
+
+typing()
+}
+
+type(messages[0])
+
+function next(){
+pages[current].classList.remove("active")
+current++
+pages[current].classList.add("active")
+type(messages[current])
+}
+
+let song=document.getElementById("song")
+
+function toggleMusic(){
+if(song.paused){song.play()}
+else{song.pause()}
+}
+
+setInterval(()=>{
+let heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML="❤️"
+heart.style.left=Math.random()*100+"vw"
+document.body.appendChild(heart)
+setTimeout(()=>heart.remove(),8000)
+},300)
+
+setInterval(()=>{
+let petal=document.createElement("div")
+petal.className="petal"
+petal.innerHTML="🌸"
+petal.style.left=Math.random()*100+"vw"
+document.body.appendChild(petal)
+setTimeout(()=>petal.remove(),10000)
+},400)
+
+</script>
+
+</body>
+</html>
